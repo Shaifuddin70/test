@@ -78,7 +78,7 @@ if (!isset($categories)) {
                         </ul>
                     </div>
 
-             
+
                 </div>
             </div>
         </div>
@@ -112,11 +112,11 @@ if (!isset($categories)) {
                                 </div>
                             </div>
 
-                          
+
                         </div>
-                          <!-- Social Media -->
+                        <!-- Social Media -->
                         <div class="col-lg-4 col-md-6">
-                        <div class="social-links">
+                            <div class="social-links">
                                 <?php if (!empty($settings['facebook'])): ?>
                                     <a href="<?= esc_html($settings['facebook']) ?>" target="_blank" class="social-link facebook" title="Facebook">
                                         <i class="bi bi-facebook"></i>
@@ -201,6 +201,28 @@ if (!isset($categories)) {
                 }
             });
         }
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Image Lazy Loading
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    img.onload = () => {
+                        img.classList.remove('loading-skeleton');
+                    };
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => {
+            imageObserver.observe(img);
+        });
     });
 </script>
 

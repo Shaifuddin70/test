@@ -403,44 +403,162 @@
     color: #343a40;
 }
 
-.advertisement-card {
+/* Modern Advertisement Cards */
+.modern-ad-card {
     position: relative;
-    /* This is crucial for absolute positioning of children */
-    display: flex;
-    flex-direction: column;
-    /* Corrected typo from 'colum' */
-    justify-content: center;
-    align-items: center;
-    /* Use align-items for centering single-line flex content */
-    text-align: center;
-    box-shadow: 0px 0px 15px #acacac78;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 100%;
+    min-height: 300px;
 }
 
+.modern-ad-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
 
+.ad-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    overflow: hidden;
+}
 
-.card-body {
+.ad-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.ad-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-ad-card:hover .ad-image {
+    transform: scale(1.05);
+}
+
+.ad-overlay {
     position: absolute;
-    bottom: 20px;
-    /* Position it 20px from the bottom */
-    left: 50%;
-    /* Move the left edge to the center */
-    transform: translateX(-50%);
-    /* Shift it back by half of its own width to center it */
-
-    /* Glassmorphism styles from your code */
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10.3px);
-    -webkit-backdrop-filter: blur(10.3px);
-    width: 80%;
-
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 2rem;
 }
 
-.advertisement-card .card-title,
-.advertisement-card .card-text {
-    color: white;
+.modern-ad-card:hover .ad-overlay {
+    opacity: 1;
+}
 
+.ad-content {
+    text-align: center;
+    color: white;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-ad-card:hover .ad-content {
+    transform: translateY(0);
+}
+
+.ad-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ad-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.ad-cta {
+    display: inline-block;
+    background: #ffffff;
+    color: #333333;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ad-cta:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modern-ad-card {
+        min-height: 250px;
+    }
+    
+    .ad-image-container {
+        min-height: 250px;
+    }
+    
+    .ad-title {
+        font-size: 1.5rem;
+    }
+    
+    .ad-description {
+        font-size: 0.9rem;
+    }
+    
+    .ad-overlay {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .modern-ad-card {
+        min-height: 200px;
+    }
+    
+    .ad-image-container {
+        min-height: 200px;
+    }
+    
+    .ad-title {
+        font-size: 1.25rem;
+    }
+    
+    .ad-description {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+    
+    .ad-cta {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
 }
 
 /*

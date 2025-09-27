@@ -57,26 +57,34 @@ $products = $products_stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php if (!empty($advertisements)): ?>
     <section class="advertisements-section py-5">
         <div class="container">
-            <div class="row g-4">
-                <?php foreach ($advertisements as $ad): ?>
-                    <div class="col-md-4">
-
-                        <div class="card advertisement-card h-100">
-
-                            <div class="card-img">
-                                <a href="category.php?id=<?= $ad['category_id'] ?>">
-                                    <img src="admin/assets/uploads/<?= esc_html($ad['image']) ?>" class="card-img-top" alt="<?= esc_html($ad['title']) ?>">
+            <div class="row g-4 justify-content-center">
+                <?php 
+                $adCount = 0;
+                foreach ($advertisements as $ad): 
+                    if ($adCount >= 3) break; // Limit to 3 cards
+                ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="modern-ad-card">
+                            <div class="ad-image-container">
+                                <a href="category.php?id=<?= $ad['category_id'] ?>" class="ad-link">
+                                    <img src="admin/assets/uploads/<?= esc_html($ad['image']) ?>" 
+                                         class="ad-image" 
+                                         alt="<?= esc_html($ad['title']) ?>"
+                                         loading="lazy">
+                                    <div class="ad-overlay">
+                                        <div class="ad-content">
+                                            <h3 class="ad-title"><?= esc_html($ad['title']) ?></h3>
+                                            <p class="ad-description"><?= esc_html($ad['description']) ?></p>
+                                            <span class="ad-cta">Explore Collection</span>
+                                        </div>
+                                    </div>
                                 </a>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title"><?= esc_html($ad['title']) ?></h5>
-                                <p class="card-text"><?= esc_html($ad['description']) ?></p>
-
-                            </div>
                         </div>
-                        </a>
                     </div>
-                <?php endforeach; ?>
+                <?php 
+                    $adCount++;
+                endforeach; ?>
             </div>
         </div>
     </section>
